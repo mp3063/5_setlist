@@ -439,3 +439,11 @@ font-size:10px;
 color:#fff;
 text-decoration:none;
 }
+
+/*============================
+    MAIN CSS CUSTOM SIN
+==============================*/
+
+div.modal-content{
+    background-color: black;
+}

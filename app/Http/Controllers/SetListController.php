@@ -3,6 +3,8 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Repertoar;
+use App\User;
 use Illuminate\Http\Request;
 
 class SetListController extends Controller {
@@ -12,7 +14,15 @@ class SetListController extends Controller {
 	}
 
 	public function index() {
-		return view( 'master-set-list' );
+		if ( \Auth::check() ) {
+			$user = User::find( \Auth::user()->id );
+		}
+
+		$repertoar = $user->repertoar;
+
+		return view( 'master-set-list', compact( 'repertoar' ) );
 	}
+
+
 
 }
