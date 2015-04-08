@@ -10,7 +10,7 @@
             {{--<div class="col-md-4">--}}
                 {{--@include('repertoar.petlje.lista_pesama')--}}
             {{--</div>--}}
-            <div class="col-md-4 col-md-offset-4">
+            <div class="col-md-6 col-md-offset-3">
                 {!! Form::model($pesma_update,['method' => 'PATCH','url' => '/repertoar/'.$pesma_update->id ]) !!}
                 @include('repertoar.partials.repertoar_form',['submitButton'=>'Update'])
                 {!! Form::close() !!}

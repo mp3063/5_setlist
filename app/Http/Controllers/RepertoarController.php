@@ -61,7 +61,12 @@ class RepertoarController extends Controller
      */
     public function show( $id )
     {
-        //
+        $pesma_show = Repertoar::findSong( $id );
+        if ($pesma_show) {
+            return view( 'repertoar.show', compact( 'pesma_show' ) );
+        }
+
+        return \Redirect::to( '/' );
     }
 
     /**

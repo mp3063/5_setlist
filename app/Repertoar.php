@@ -6,17 +6,12 @@ class Repertoar extends Model
 {
 
     protected $table    = 'repertoar';
-    protected $fillable = [ 'user_id', 'band', 'song' ];
+    protected $fillable = [ 'user_id', 'band', 'song', 'lyrics' ];
 
     public function genre()
     {
         return $this->belongsToMany( 'App\Genre', 'repertoar_genre', 'genre_id',
             'pesma_id' )->withTimestamps();
-    }
-
-    public function text()
-    {
-        return $this->hasOne( 'App\Lyrics', 'pesma_id', 'id' );
     }
 
     public function user()

@@ -7,5 +7,9 @@
     <p>{{$errors->first('song')}}</p>
 </div>
 <div class="form-group">
+    {!! Form::textarea('lyrics', null, ['class' => 'form-control','placeholder'=>'Lyrics']) !!}
+    <p>{{$errors->first('lyrics')}}</p>
+</div>
+<div class="form-group">
     {!! Form::submit($submitButton, ['class' => 'form-control btn btn-danger']) !!}
 </div>

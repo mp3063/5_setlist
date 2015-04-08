@@ -14,8 +14,9 @@ class CreateRepertoarTable extends Migration {
 		Schema::create( 'repertoar', function ( Blueprint $table ) {
 			$table->increments( 'id' );
 			$table->integer( 'user_id' )->unsigned();
-			$table->string( 'bend' );
-			$table->string( 'pesma' );
+			$table->string( 'band' );
+			$table->string( 'song' );
+			$table->string( 'lyrics' );
 			$table->timestamps();
 
 			$table->foreign( 'user_id' )->references( 'id' )->on( 'users' )

@@ -3,8 +3,9 @@
         <tr>
             <td>{{$pesma->band}} - {{$pesma->song}}</td>
             <td>
-                <a class="btn btn-danger btn-xs" href="/repertoar/{{$pesma->id}}/edit">Update name</a>
-                <a class="btn btn-success btn-xs" href="#">Add/Update Lyrics</a>
+                <a class="btn btn-primary btn-xs" href="/repertoar/{{$pesma->id}}">Overview</a>
+                <a class="btn btn-danger btn-xs" href="/repertoar/{{$pesma->id}}/edit">Update Name/Lyrics</a>
+                <a class="btn btn-success btn-xs" href="#">Add/Update Genre</a>
             </td>
         </tr>
     @endforeach
