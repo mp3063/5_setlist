@@ -8,6 +8,14 @@ class Repertoar extends Model
     protected $table    = 'repertoar';
     protected $fillable = [ 'user_id', 'band', 'song', 'lyrics' ];
 
+    public static function findSong( $id )
+    {
+        $pesma = Repertoar::findOrFail( $id );
+        if (\Auth::id() == $pesma->user_id) {
+            return $pesma;
+        }
+    }
+
     public function genre()
     {
         return $this->belongsToMany( 'App\Genre', 'repertoar_genre', 'genre_id',
@@ -19,11 +27,4 @@ class Repertoar extends Model
         return $this->belongsTo( 'App\User', 'user_id', 'id' );
     }
 
-    public static function findSong( $id )
-    {
-        $pesma = Repertoar::findOrFail( $id );
-        if (\Auth::id() == $pesma->user_id) {
-            return $pesma;
-        }
-    }
 }

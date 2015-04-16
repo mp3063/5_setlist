@@ -10,9 +10,9 @@
             <div class="modal-body">
                 {!! Form::open(['url' => 'repertoar', 'method' => 'post']) !!}
                 {!! Form::label('band', 'Band', ['class' => 'control-label']) !!}
-                {!! Form::text('band', NULL, ['class' => 'form-control']) !!}
+                {!! Form::text('band', null, ['class' => 'form-control']) !!}
                 {!! Form::label('song', 'Song', ['class' => 'control-label']) !!}
-                {!! Form::text('song', NULL, ['class' => 'form-control']) !!}
+                {!! Form::text('song', null, ['class' => 'form-control']) !!}
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -24,3 +24,4 @@
         </div>
     </div>
 </div>
+
