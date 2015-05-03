@@ -11,7 +11,7 @@
     <title>LIGHT WAVE</title>
     <style>
         body {
-            padding-top: 50px;
+            padding-top: 60px;
             padding-bottom: 20px;
         }
     </style>
@@ -27,6 +27,7 @@
     <link href="/assets/css/animations.min.css" rel="stylesheet"/>
     <!-- CUSTOM CSS -->
     <link href="/assets/css/style-solid-black.css" rel="stylesheet"/>
+    <link href="/assets/css/main.css" rel="stylesheet"/>
     <!-- HTML5 Shiv and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>

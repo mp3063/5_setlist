@@ -14,8 +14,8 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#home">HOME</a></li>
-                <li><a href="#services">SERVICES</a></li>
+                <li><a href="/">DASHBOARD</a></li>
+                <li><a href="/overview">OVERVIEW</a></li>
                 <li><a href="#pricing">PRICING</a></li>
                 <li><a href="#work">WORK</a></li>
                 <li><a href="#team">TEAM</a></li>
