@@ -8,13 +8,13 @@ class Repertoar extends Model
     protected $table    = 'repertoar';
     protected $fillable = [ 'user_id', 'band', 'song', 'lyrics' ];
 
-    public static function findSong( $id )
-    {
-        $pesma = Repertoar::findOrFail( $id );
-        if (\Auth::id() == $pesma->user_id) {
-            return $pesma;
-        }
-    }
+//    public static function findSong( $id )
+//    {
+//        $pesma = Repertoar::findOrFail( $id );
+//        if (\Auth::id() == $pesma->user_id) {
+//            return $pesma;
+//        }
+//    }
 
     public function genre()
     {

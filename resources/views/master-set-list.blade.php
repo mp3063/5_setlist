@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-md-4">
                 @foreach($repertoar as $pesma)
-                    {{$pesma->bend}} - {{$pesma->pesma}} <br/>
+                    {{$pesma->band}} - {{$pesma->song}} <br/>
                 @endforeach
             </div>
             <div class="col-md-4">

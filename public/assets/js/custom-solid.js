@@ -1,97 +1,96 @@
 /*=============================================================
-    Authour URL: www.designbootstrap.com
-    
-    http://www.designbootstrap.com/
+ Authour URL: www.designbootstrap.com
 
-    License: MIT
+ http://www.designbootstrap.com/
 
-    http://opensource.org/licenses/MIT
+ License: MIT
 
-    100% Free To use For Personal And Commercial Use.
+ http://opensource.org/licenses/MIT
 
-    IN EXCHANGE JUST TELL PEOPLE ABOUT THIS WEBSITE
-   
-========================================================  */
+ 100% Free To use For Personal And Commercial Use.
+
+ IN EXCHANGE JUST TELL PEOPLE ABOUT THIS WEBSITE
+
+ ========================================================  */
 
 $(document).ready(function () {
 
-/*====================================
-SCROLLING SCRIPTS
-======================================*/
+    /*====================================
+     SCROLLING SCRIPTS
+     ======================================*/
 
-$('.scroll-me a').bind('click', function (event) { //just pass scroll-me in design and start scrolling
-var $anchor = $(this);
-$('html, body').stop().animate({
-scrollTop: $($anchor.attr('href')).offset().top
-}, 1200, 'easeInOutExpo');
-event.preventDefault();
-});
-
-
-/*====================================
-SLIDER SCRIPTS
-======================================*/
+    $('.scroll-me a').bind('click', function (event) { //just pass scroll-me in design and start scrolling
+        var $anchor = $(this);
+        $('html, body').stop().animate({
+            scrollTop: $($anchor.attr('href')).offset().top
+        }, 1200, 'easeInOutExpo');
+        event.preventDefault();
+    });
 
 
-$('#carousel-slider').carousel({
-interval: 8000 //TIME IN MILLI SECONDS
-});
+    /*====================================
+     SLIDER SCRIPTS
+     ======================================*/
 
 
-/*====================================
-POPUP IMAGE SCRIPTS
-======================================*/
-$('.fancybox-media').fancybox({
-openEffect: 'elastic',
-closeEffect: 'elastic',
-helpers: {
-title: {
-type: 'inside'
-}
-}
-});
+    $('#carousel-slider').carousel({
+        interval: 8000 //TIME IN MILLI SECONDS
+    });
 
 
-/*====================================
-FILTER FUNCTIONALITY SCRIPTS
-======================================*/
-$(window).load(function () {
-var $container = $('#work-div');
-$container.isotope({
-filter: '*',
-animationOptions: {
-duration: 750,
-easing: 'linear',
-queue: false
-}
-});
-$('.caegories a').click(function () {
-$('.caegories .active').removeClass('active');
-$(this).addClass('active');
-var selector = $(this).attr('data-filter');
-$container.isotope({
-filter: selector,
-animationOptions: {
-duration: 750,
-easing: 'linear',
-queue: false
-}
-});
-return false;
-});
-
-});
+    /*====================================
+     POPUP IMAGE SCRIPTS
+     ======================================*/
+    $('.fancybox-media').fancybox({
+        openEffect: 'elastic',
+        closeEffect: 'elastic',
+        helpers: {
+            title: {
+                type: 'inside'
+            }
+        }
+    });
 
 
+    /*====================================
+     FILTER FUNCTIONALITY SCRIPTS
+     ======================================*/
+    $(window).load(function () {
+        var $container = $('#work-div');
+        $container.isotope({
+            filter: '*',
+            animationOptions: {
+                duration: 750,
+                easing: 'linear',
+                queue: false
+            }
+        });
+        $('.caegories a').click(function () {
+            $('.caegories .active').removeClass('active');
+            $(this).addClass('active');
+            var selector = $(this).attr('data-filter');
+            $container.isotope({
+                filter: selector,
+                animationOptions: {
+                    duration: 750,
+                    easing: 'linear',
+                    queue: false
+                }
+            });
+            return false;
+        });
 
-/*====================================
-WRITE YOUR CUSTOM SCRIPTS BELOW
-======================================*/
+    });
 
 
+    /*====================================
+     WRITE YOUR CUSTOM SCRIPTS BELOW
+     ======================================*/
 
 
-
+    $(".repertoar-div").click(function () {
+        $(this).toggleClass("highlight");
+    });
 
 
 });

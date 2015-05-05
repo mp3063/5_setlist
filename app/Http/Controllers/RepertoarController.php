@@ -2,11 +2,15 @@
 
 use App\Http\Requests;
 use App\Http\Requests\RepertoarValidation;
+use App\Logic\Traits\Helpers;
 use App\Repertoar;
+use Auth;
+use Redirect;
 
 class RepertoarController extends Controller
 {
 
+    use Helpers;
 
     public function __construct()
     {
@@ -32,10 +36,10 @@ class RepertoarController extends Controller
      */
     public function destroy( $id )
     {
-        $pesma_delete = Repertoar::findSong( $id );
+        $pesma_delete = $this->findSong( $id );
         $pesma_delete->delete();
 
-        return \Redirect::to( '/' );
+        return Redirect::to( '/' );
     }
 
     /**
@@ -47,14 +51,14 @@ class RepertoarController extends Controller
      */
     public function edit( $id )
     {
-        $pesma_update = Repertoar::findSong( $id );
-        $repertoar    = \Auth::user()->repertoar;
+        $pesma_update = $this->findSong( $id );
+        $repertoar    = Auth::user()->repertoar;
         if ($pesma_update) {
             return view( 'repertoar.edit',
                 compact( 'pesma_update', 'repertoar' ) );
         }
 
-        return \Redirect::to( '/' );
+        return Redirect::to( '/' );
     }
 
     /**
@@ -64,7 +68,7 @@ class RepertoarController extends Controller
      */
     public function index()
     {
-        $repertoar = \Auth::user()->repertoar;
+        $repertoar = Auth::user()->repertoar;
 
         return view( 'repertoar.repertoar', compact( 'repertoar' ) );
     }
@@ -78,12 +82,12 @@ class RepertoarController extends Controller
      */
     public function show( $id )
     {
-        $pesma_show = Repertoar::findSong( $id );
+        $pesma_show = $this->findSong( $id );
         if ($pesma_show) {
             return view( 'repertoar.show', compact( 'pesma_show' ) );
         }
 
-        return \Redirect::to( '/' );
+        return Redirect::to( '/' );
     }
 
     /**
@@ -98,9 +102,9 @@ class RepertoarController extends Controller
     {
         $pesma = new Repertoar( $request->all() );
 
-        \Auth::user()->repertoar()->save( $pesma );
+        Auth::user()->repertoar()->save( $pesma );
 
-        return \Redirect::back();
+        return Redirect::back();
     }
 
     /**
@@ -114,11 +118,11 @@ class RepertoarController extends Controller
      */
     public function update( $id, RepertoarValidation $request )
     {
-        $pesma_update = Repertoar::findSong( $id );
+        $pesma_update = $this->findSong( $id );
 
         $pesma_update->update( $request->all() );
 
-        return \Redirect::to( '/' );
+        return Redirect::to( '/' );
 
     }
 

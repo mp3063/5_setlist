@@ -1,12 +1,12 @@
 <div class="navbar navbar-inverse navbar-fixed-top scroll-me" id="menu-section">
-    <div class="container">
+    <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand hidden-xs hidden-sm" href="#">
 
                 BAND MANAGEMENT APP
 

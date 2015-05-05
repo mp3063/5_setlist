@@ -1,5 +1,7 @@
 <?php namespace App\Http\Requests;
 
+use Auth;
+
 class RepertoarValidation extends Request
 {
 
@@ -10,7 +12,11 @@ class RepertoarValidation extends Request
      */
     public function authorize()
     {
-        return true;
+        if (Auth::check()) {
+            return true;
+        }
+
+        return false;
     }
 
     /**

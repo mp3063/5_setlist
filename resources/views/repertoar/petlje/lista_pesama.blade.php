@@ -5,9 +5,9 @@
             <tr>
                 <td class="col-sm-6">{{$pesma->band}} - {{$pesma->song}}</td>
                 <td class="col-sm-1">
-                    <a class="btn btn-primary btn-xs btn-block" href="/repertoar/{{$pesma->id}}">Lyrics</a></td>
+                    <a class="btn btn-success btn-xs btn-block" href="/repertoar/{{$pesma->id}}">Details</a></td>
                 <td class="col-sm-1">
-                    <a class="btn btn-danger btn-xs btn-block" href="/repertoar/{{$pesma->id}}/edit">Update Name/Lyrics</a>
+                    <a class="btn btn-primary btn-xs btn-block" href="/repertoar/{{$pesma->id}}/edit">Update Name/Lyrics</a>
                 </td>
                 <td class="col-sm-1">
                     {!! Form::open(['route' => ['repertoar.destroy',$pesma->id], 'method' => 'delete','class'=>'form-inline']) !!}
