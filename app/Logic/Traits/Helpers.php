@@ -9,6 +9,7 @@ use App\Logic\PodelaPoRedovima\PodelaPoRedovima;
 use App\Repertoar;
 use App\User;
 use Auth;
+use Session;
 
 trait Helpers
 {
@@ -19,6 +20,16 @@ trait Helpers
         if (Auth::id() == $pesma->user_id) {
             return $pesma;
         }
+    }
+
+    public function flashMessage( $message )
+    {
+        return Session::flash( 'flash_message', $message );
+    }
+
+    public function flashMessageImportant( $message )
+    {
+        return Session::flash( 'flash_message_important', $message );
     }
 
     public function poReduPesama( $divider )

@@ -5,7 +5,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title text-center" id="myModalLabel">Enter band and song name</h4>
+                <h4 class="modal-title text-center" id="myModalLabel">Enter band and song name, and lyrics!</h4>
             </div>
             <div class="modal-body">
                 {!! Form::open(['url' => 'repertoar', 'method' => 'post']) !!}
@@ -13,6 +13,11 @@
                 {!! Form::text('band', null, ['class' => 'form-control']) !!}
                 {!! Form::label('song', 'Song', ['class' => 'control-label']) !!}
                 {!! Form::text('song', null, ['class' => 'form-control']) !!}
+                <!--- Lyrics Field --->
+                <div class="form-group">
+                    {!! Form::label('lyrics', 'Lyrics') !!}
+                    {!! Form::textarea('lyrics', null, ['class' => 'form-control']) !!}
+                </div>
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

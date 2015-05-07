@@ -39,6 +39,8 @@ class RepertoarController extends Controller
         $pesma_delete = $this->findSong( $id );
         $pesma_delete->delete();
 
+        $this->flashMessage( 'You successfully deleted a song!' );
+
         return Redirect::to( '/' );
     }
 
@@ -86,6 +88,7 @@ class RepertoarController extends Controller
         if ($pesma_show) {
             return view( 'repertoar.show', compact( 'pesma_show' ) );
         }
+        $this->flashMessage( 'You don\'t have permission to access that song!!!' );
 
         return Redirect::to( '/' );
     }
@@ -101,8 +104,9 @@ class RepertoarController extends Controller
     public function store( RepertoarValidation $request )
     {
         $pesma = new Repertoar( $request->all() );
-
         Auth::user()->repertoar()->save( $pesma );
+
+        $this->flashMessage( 'You successfully inserted song in the Master SetList!' );
 
         return Redirect::back();
     }
@@ -121,6 +125,8 @@ class RepertoarController extends Controller
         $pesma_update = $this->findSong( $id );
 
         $pesma_update->update( $request->all() );
+
+        $this->flashMessage( 'You\'re successfully updated a song!' );
 
         return Redirect::to( '/' );
 

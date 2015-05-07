@@ -27,8 +27,9 @@ class RepertoarValidation extends Request
     public function rules()
     {
         return [
-            'band' => 'required',
-            'song' => 'required'
+            'band'   => 'required',
+            'song'   => 'required',
+            'lyrics' => 'required'
         ];
     }
 

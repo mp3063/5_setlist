@@ -92,5 +92,7 @@ $(document).ready(function () {
         $(this).toggleClass("highlight");
     });
 
+    $("div.alert").not(".alert-important").delay(3000).slideUp(600);
+
 
 });
