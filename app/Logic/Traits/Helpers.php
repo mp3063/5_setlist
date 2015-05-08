@@ -9,17 +9,21 @@ use App\Logic\PodelaPoRedovima\PodelaPoRedovima;
 use App\Repertoar;
 use App\User;
 use Auth;
+use Redirect;
 use Session;
 
 trait Helpers
 {
 
-    public static function findSong( $id )
+    public function findSong( $id )
     {
         $pesma = Repertoar::findOrFail( $id );
         if (Auth::id() == $pesma->user_id) {
             return $pesma;
         }
+        $this->flashMessage( 'We could not find that song!' );
+
+        return Redirect::to( '/' );
     }
 
     public function flashMessage( $message )
