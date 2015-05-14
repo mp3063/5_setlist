@@ -34,6 +34,8 @@ class SetListController extends Controller
         $repertoar = $this->userRepertoar();
         $chunk     = $this->poReduPesama( 3 );
 
+        $this->flashMessage( 'Click on songs to select it from master playlist!' );
+
         return view( 'repertoar.overview', compact( 'repertoar', 'chunk' ) );
     }
 

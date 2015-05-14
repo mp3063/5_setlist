@@ -15,6 +15,8 @@ use Session;
 trait Helpers
 {
 
+    use FlashMessage;
+
     public function findSong( $id )
     {
         $pesma = Repertoar::findOrFail( $id );
@@ -24,16 +26,6 @@ trait Helpers
         $this->flashMessage( 'We could not find that song!' );
 
         return Redirect::to( '/' );
-    }
-
-    public function flashMessage( $message )
-    {
-        return Session::flash( 'flash_message', $message );
-    }
-
-    public function flashMessageImportant( $message )
-    {
-        return Session::flash( 'flash_message_important', $message );
     }
 
     public function poReduPesama( $divider )

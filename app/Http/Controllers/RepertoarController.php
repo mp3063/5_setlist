@@ -17,23 +17,11 @@ class RepertoarController extends Controller
         $this->middleware( 'auth' );
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
     public function create()
     {
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
     public function destroy( $id )
     {
         $pesma_delete = $this->findSong( $id );
@@ -44,13 +32,6 @@ class RepertoarController extends Controller
         return Redirect::to( '/' );
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
     public function edit( $id )
     {
         $pesma_update = $this->findSong( $id );
@@ -63,11 +44,6 @@ class RepertoarController extends Controller
         return Redirect::to( '/' );
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return View
-     */
     public function index()
     {
         $repertoar = Auth::user()->repertoar;
@@ -75,13 +51,6 @@ class RepertoarController extends Controller
         return view( 'repertoar.repertoar', compact( 'repertoar' ) );
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
     public function show( $id )
     {
         $pesma_show = $this->findSong( $id );
@@ -93,14 +62,6 @@ class RepertoarController extends Controller
         return Redirect::to( '/' );
     }
 
-    /**
-     * Store a newly created resource in storage.
-     * Validacija Repertoar Form
-     *
-     * @param \App\Http\Requests\RepertoarValidation $request
-     *
-     * @return \App\Http\Controllers\Response
-     */
     public function store( RepertoarValidation $request )
     {
         $pesma = new Repertoar( $request->all() );
@@ -111,15 +72,6 @@ class RepertoarController extends Controller
         return Redirect::back();
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  int                                   $id
-     *
-     * @param \App\Http\Requests\RepertoarValidation $request
-     *
-     * @return \App\Http\Controllers\Response
-     */
     public function update( $id, RepertoarValidation $request )
     {
         $pesma_update = $this->findSong( $id );

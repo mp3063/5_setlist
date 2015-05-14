@@ -5,9 +5,12 @@ namespace App\Logic\PodelaPoRedovima;
 
 
 use App\Http\Controllers\SetListController;
+use App\Logic\Traits\Helpers;
 
 class PodelaPoRedovima
 {
+
+    use Helpers;
 
     public $setList;
     public $divider;

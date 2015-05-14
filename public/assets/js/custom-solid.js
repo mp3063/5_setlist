@@ -94,5 +94,48 @@ $(document).ready(function () {
 
     $("div.alert").not(".alert-important").delay(3000).slideUp(600);
 
+    $(".izaberi").click(function () {
+
+        var highlight = $(".highlight");
+        if (highlight.length > 0) {
+            $(".repertoar-div").not(highlight).hide();
+            $(highlight).removeClass("highlight").addClass("chosen");
+
+            var chosen = $(".chosen");
+            var poKolonama = function (divider) {
+                return Math.ceil(chosen.length / divider);
+            };
+
+            var prva = poKolonama(3);
+            var druga = prva * 2;
+            var treca = chosen.length;
+
+            chosen.slice(0, prva).addClass("1");
+            chosen.slice(prva, druga).addClass("2");
+            chosen.slice(druga, treca).addClass("3");
+
+
+            $(".1").each(function () {
+
+                $(this).appendTo(".kol-1");
+
+            });
+            $(".2").each(function () {
+
+                $(this).appendTo(".kol-2");
+
+            });
+            $(".3").each(function () {
+
+                $(this).appendTo(".kol-3");
+
+            });
+        }
+        else {
+            alert("You must first chose some songs!");
+        }
+
+
+    });
 
 });
