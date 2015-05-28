@@ -38,25 +38,41 @@
   <component name="DBNavigator.Project.ObjectDependencyManager">
     <last-used-dependency-type value="INCOMING" />
   </component>
+  <component name="DBNavigator.Project.ScriptExecutionManager" clear-outputs="true">
+    <recently-used-interfaces />
+  </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="28f45430-dd0e-4ff9-ab06-d77e25124e0a">
+      <connection id="28f45430-dd0e-4ff9-ab06-d77e25124e0a" active="true">
         <database>
           <name value="Localhost" />
           <description value="" />
-          <active value="true" />
-          <os-authentication value="false" />
           <database-type value="MYSQL" />
+          <config-type value="BASIC" />
           <database-version value="5.6" />
-          <user value="root" />
-          <password value="" />
+          <driver-source value="EXTERNAL" />
           <driver-library value="C:\ProgramData\JetBrains\TeamCity\lib\jdbc\mysql-connector-java-5.1.35-bin.jar" />
           <driver value="com.mysql.jdbc.Driver" />
-          <url value="jdbc:mysql://localhost:3306" />
+          <host value="" />
+          <port value="" />
+          <database value="" />
+          <url-type value="DATABASE" />
+          <os-authentication value="false" />
+          <user value="root" />
+          <password value="" />
         </database>
+        <properties>
+          <auto-commit value="false" />
+        </properties>
+        <ssh-settings>
+          <active value="false" />
+          <host value="" />
+          <port value="22" />
+          <user value="" />
+          <password value="" />
+        </ssh-settings>
         <details>
           <charset value="UTF-8" />
-          <auto-commit value="false" />
           <ddl-file-binding value="true" />
           <database-logging value="false" />
           <environment-type value="development" />
@@ -409,16 +425,14 @@
         <execution-timeout value="20" />
         <focus-result value="false" />
       </statement-execution>
+      <script-execution>
+        <command-line-interfaces />
+      </script-execution>
       <statement-execution>
         <execution-timeout value="20" />
         <debug-execution-timeout value="600" />
         <parameter-history-size value="10" />
       </statement-execution>
-      <compiler>
-        <compile-type value="KEEP" />
-        <compile-dependencies value="ASK" />
-        <always-show-controls value="false" />
-      </compiler>
     </execution-engine-settings>
     <operation-settings>
       <transactions>
@@ -437,6 +451,11 @@
         <kill-session value="ASK" />
         <reload-on-filter-change value="false" />
       </session-browser>
+      <compiler>
+        <compile-type value="KEEP" />
+        <compile-dependencies value="ASK" />
+        <always-show-controls value="false" />
+      </compiler>
     </operation-settings>
     <ddl-file-settings>
       <extensions>

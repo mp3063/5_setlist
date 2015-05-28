@@ -24,9 +24,11 @@ class PodelaPoRedovima
     public function poRedu()
     {
         $repertoar = $this->setList->userRepertoar();
-        $chunk     = $repertoar->chunk( $this->offset() );
+        if ($this->offset() > 0) {
+            $chunk = $repertoar->chunk( $this->offset() );
 
-        return $chunk;
+            return $chunk;
+        }
     }
 
     public function offset()
