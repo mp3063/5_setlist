@@ -1,8 +1,5 @@
 <?php
-
-
 namespace App\Logic\Traits;
-
 
 use App\Http\Controllers\SetListController;
 use App\Logic\PodelaPoRedovima\PodelaPoRedovima;
@@ -17,10 +14,12 @@ trait Helpers
 
     use FlashMessage;
 
+
+
     public function findSong( $id )
     {
         $pesma = Repertoar::findOrFail( $id );
-        if (Auth::id() == $pesma->user_id) {
+        if ( Auth::id() == $pesma->user_id ) {
             return $pesma;
         }
         $this->flashMessage( 'We could not find that song!' );
@@ -28,24 +27,30 @@ trait Helpers
         return Redirect::to( '/' );
     }
 
+
+
     public function poReduPesama( $divider )
     {
         return ( new PodelaPoRedovima( $divider,
-            new SetListController() ) )->poRedu();
+                                       new SetListController() ) )->poRedu();
     }
+
+
 
     public function userRepertoar()
     {
-        if ($this->findAuthUserById()) {
+        if ( $this->findAuthUserById() ) {
             return $this->findAuthUserById()->repertoar;
         }
 
         return false;
     }
 
+
+
     public function findAuthUserById()
     {
-        if (Auth::check()) {
+        if ( Auth::check() ) {
             return User::find( Auth::user()->id );
         }
 

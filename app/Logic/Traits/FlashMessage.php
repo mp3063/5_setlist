@@ -1,8 +1,5 @@
 <?php
-
-
 namespace App\Logic\Traits;
-
 
 use Session;
 
@@ -13,6 +10,8 @@ trait FlashMessage
     {
         return Session::flash( 'flash_message', $message );
     }
+
+
 
     public function flashMessageImportant( $message )
     {
