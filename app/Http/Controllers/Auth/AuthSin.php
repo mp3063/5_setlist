@@ -6,6 +6,7 @@ use App\Http\Requests\RegisterFormValidation;
 use App\Logic\Auth\Credentials;
 use App\Logic\Auth\MailSend;
 use App\Logic\Auth\Messages;
+use App\Logic\Auth\Redirects;
 use App\Logic\Auth\Validation;
 use App\Logic\Traits\FlashMessage;
 use App\User;
@@ -38,28 +39,21 @@ class AuthSin extends Controller
         if ( $user ) {
             MailSend::register( $user );
 
-            return Redirect::to( '/auth/login' )
-                           ->with( $this->flashMessageImportant( 'Vaš nalog je kreiran! Poslali smo Vam email da bi ste ga aktivirali.' ) );
+            return Redirects::postRegister();
         }
+
+        return Redirects::postRegister( false );
     }
 
 
 
     public function getActivate( $code )
     {
-        $user = User::where( 'code', '=', $code )->where( 'active', '=', 0 );
-        if ( $user->count() ) {
-            $user = $user->first();
-            $user->active = 1;
-            $user->code = '';
-            if ( $user->save() ) {
-                return Redirect::to( '/auth/login' )
-                               ->with( $this->flashMessage( 'Vaš nalog je aktiviran!' ) );
-            }
+        if ( Credentials::getRegister( $code ) ) {
+            return Redirects::getActivate();
         }
 
-        return Redirect::to( '/auth/login' )
-                       ->with( $this->flashMessage( 'Nismo uspeli da aktiviramo Vaš nalog. Probajte kasnije.' ) );
+        return Redirects::getActivate( false );
     }
 
 
@@ -70,14 +64,10 @@ class AuthSin extends Controller
         $remember = Input::has( 'remember' ) ? true : false;
         $auth = Auth::attempt( Credentials::login(), $remember );
         if ( $auth ) {
-            return Redirect::intended( '/' );
-        } else {
-            return Redirect::to( '/auth/login' )
-                           ->with( $this->flashMessage( 'Email/Šifra su pogresni, ili niste aktivirali svoj nalog!' ) );
+            return Redirects::postLogin();
         }
 
-        return Redirect::to( '/auth/login' )
-                       ->with( $this->flashMessage( 'Postoji problem, ne možemo da Vas ulogujemo. Da li ste aktivirali Vaš nalog?' ) );
+        return Redirects::postLogin( false );
     }
 
 
@@ -104,8 +94,7 @@ class AuthSin extends Controller
             return View::make( '/auth/changepassword' );
         }
 
-        return Redirect::to( '/auth/login' )
-                       ->with( $this->flashMessageImportant( 'Morate biti ulogovani da bi ste promenili šifru' ) );
+        return Redirects::getChangePassword();
     }
 
 
@@ -113,22 +102,11 @@ class AuthSin extends Controller
     public function postChangepassword()
     {
         Validation::changePassword();
-        $user = User::find( Auth::user()->id );
-        $old_password = Input::get( 'old_password' );
-        $password = Input::get( 'password' );
-        if ( Hash::check( $old_password, $user->getAuthPassword() ) ) {
-            $user->password = Hash::make( $password );
-            if ( $user->save() ) {
-                return Redirect::to( '/' )
-                               ->with( $this->flashMessage( 'Vaša šifra je promenjena' ) );
-            }
-        } else {
-            return Redirect::to( '/auth/changepassword' )
-                           ->with( $this->flashMessage( 'Vaša stara šifra je netačna!' ) );
+        if ( Credentials::postChangePassword() ) {
+            return Redirects::postChangePassword();
         }
 
-        return Redirect::route( '/auth/changepassword' )
-                       ->with( $this->flashMessage( 'Vaša šifra ne može biti promenjena' ) );
+        return Redirects::postChangePassword( false );
     }
 
 
@@ -143,43 +121,24 @@ class AuthSin extends Controller
     public function postForgotpassword()
     {
         Validation::forgotPassword();
-        $user = User::where( 'email', '=', Input::get( 'email' ) );
-        if ( $user->count() ) {
-            $user = $user->first();
-            $code = str_random( 60 );
-            $password = str_random( 10 );
-            $user->code = $code;
-            $user->password_temp = Hash::make( $password );
-            if ( $user->save() ) {
-                MailSend::forgotPassword( $user, $password );
+        list( $user, $password ) = Credentials::postForgotPassword();
+        if ( $user ) {
+            MailSend::forgotPassword( $user, $password );
 
-                return Redirect::to( '/' )
-                               ->with( $this->flashMessage( 'Poslali smo Vam novu šifru.' ) );
-            }
+            return Redirects::postForgotPassword();
         }
 
-        return Redirect::to( '/auth/forgotpassword' )
-                       ->with( $this->flashMessage( 'Mejl koji ste uneli ne postoji u našoj bazi.' ) );
+        return Redirects::postForgotPassword( false );
     }
 
 
 
     public function getRecover( $code )
     {
-        $user = User::where( 'code', '=', $code )
-                    ->where( 'password_temp', '!=', '' );
-        if ( $user->count() ) {
-            $user = $user->first();
-            $user->password = $user->password_temp;
-            $user->password_temp = '';
-            $user->code = '';
-            if ( $user->save() ) {
-                return Redirect::to( '/' )
-                               ->with( $this->flashMessage( 'Vaš šifra je uspešno resetovana. Sada možete da se ulogujete sa šifrom koju smo Vam poslali!' ) );
-            }
+        if ( Credentials::getRecover( $code ) ) {
+            return Redirects::getRecover();
         }
 
-        return Redirect::to( '/' )
-                       ->with( $this->flashMessage( 'Nismo uspeli da vratimo Vaš nalog!' ) );
+        return Redirects::getRecover( false );
     }
 }

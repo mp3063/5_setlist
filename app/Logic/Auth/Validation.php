@@ -26,7 +26,7 @@ class Validation
     }
 
 
-
+    
     public static function login()
     {
         $validator = Validator::make( Input::all(), [ 'email'    => 'required',
