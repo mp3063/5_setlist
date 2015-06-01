@@ -7,7 +7,6 @@ use App\Repertoar;
 use App\User;
 use Auth;
 use Redirect;
-use Session;
 
 trait Helpers
 {

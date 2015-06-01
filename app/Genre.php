@@ -2,14 +2,18 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class Genre extends Model {
+class Genre extends Model
+{
 
-	protected $table    = 'genre';
-	protected $fillable = [ 'genre' ];
+    protected $table    = 'genre';
+    protected $fillable = [ 'genre' ];
 
-	public function repertoar() {
-		return $this->belongsToMany( 'App\Repertoar', 'repertoar_genre', 'pesma_id',
-		                             'genre_id' );
-	}
+
+
+    public function repertoar()
+    {
+        return $this->belongsToMany( 'App\Repertoar', 'repertoar_genre',
+                                     'song_id', 'genre_id' )->withTimestamps();
+    }
 
 }

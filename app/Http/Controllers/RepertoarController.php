@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\Genre;
 use App\Http\Requests;
 use App\Http\Requests\RepertoarValidation;
 use App\Logic\Traits\Helpers;
@@ -30,8 +31,7 @@ class RepertoarController extends Controller
 
     public function destroy( $id )
     {
-        $pesma_delete = $this->findSong( $id );
-        $pesma_delete->delete();
+        $this->findSong( $id )->delete();
         $this->flashMessage( 'You successfully deleted a song!' );
 
         return Redirect::to( '/' );
@@ -56,8 +56,9 @@ class RepertoarController extends Controller
     public function index()
     {
         $repertoar = Auth::user()->repertoar;
+        $select = Genre::lists( 'genre', 'id' );
 
-        return view( 'repertoar.repertoar', compact( 'repertoar' ) );
+        return view( 'repertoar.repertoar', compact( 'repertoar', 'select' ) );
     }
 
 
@@ -78,7 +79,9 @@ class RepertoarController extends Controller
     public function store( RepertoarValidation $request )
     {
         $pesma = new Repertoar( $request->all() );
-        Auth::user()->repertoar()->save( $pesma );
+        $genre = Auth::user()->repertoar()->save( $pesma );
+        $genreIds = $request->input( 'genre' );
+        $genre->genre()->attach( $genreIds );
         $this->flashMessage( 'You successfully inserted song in the Master SetList!' );
 
         return Redirect::back();

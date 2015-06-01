@@ -13,10 +13,15 @@
                 {!! Form::text('band', null, ['class' => 'form-control']) !!}
                 {!! Form::label('song', 'Song', ['class' => 'control-label']) !!}
                 {!! Form::text('song', null, ['class' => 'form-control']) !!}
+
                 <!--- Lyrics Field --->
                 <div class="form-group">
                     {!! Form::label('lyrics', 'Lyrics') !!}
                     {!! Form::textarea('lyrics', null, ['class' => 'form-control']) !!}
+                </div>
+
+                <div class="form-group">
+                    {!! Form::select('genre[]',$select,null,['class'=>'form-control','multiple']) !!}
                 </div>
 
                 <div class="modal-footer">

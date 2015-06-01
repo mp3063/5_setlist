@@ -9,11 +9,14 @@ class Repertoar extends Model
     protected $fillable = [ 'user_id', 'band', 'song', 'lyrics' ];
 
 
+
     public function genre()
     {
-        return $this->belongsToMany( 'App\Genre', 'repertoar_genre', 'genre_id',
-            'pesma_id' )->withTimestamps();
+        return $this->belongsToMany( 'App\Genre', 'repertoar_genre', 'song_id',
+                                     'genre_id' )->withTimestamps();
     }
+
+
 
     public function user()
     {
