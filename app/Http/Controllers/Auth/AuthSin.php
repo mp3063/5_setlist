@@ -2,21 +2,16 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\RegisterFormValidation;
 use App\Logic\Auth\Credentials;
 use App\Logic\Auth\MailSend;
-use App\Logic\Auth\Messages;
 use App\Logic\Auth\Redirects;
 use App\Logic\Auth\Validation;
 use App\Logic\Traits\FlashMessage;
 use App\User;
 use Auth;
-use Hash;
 use Input;
 use Redirect;
 use View;
-use Validator;
-use Session;
 
 class AuthSin extends Controller
 {

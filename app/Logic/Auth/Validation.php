@@ -1,7 +1,6 @@
 <?php
 namespace App\Logic\Auth;
 
-use App\Http\Requests\RegisterFormValidation;
 use Input;
 use Redirect;
 use Validator;
