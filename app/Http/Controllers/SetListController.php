@@ -1,13 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
-use App\Logic\PodelaPoRedovima\PodelaPoRedovima;
 use App\Logic\Traits\Helpers;
-use App\Repertoar;
-use App\User;
-use Auth;
-use Illuminate\Http\Request;
 
 class SetListController extends Controller
 {
