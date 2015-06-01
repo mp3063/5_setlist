@@ -15,11 +15,11 @@ class Redirects
     {
         if ( $true == true ) {
             return Redirect::to( '/auth/login' )
-                           ->with( self::flashMessageImportant( 'Vaö nalog je kreiran! Poslali smo Vam email da bi ste ga aktivirali.' ) );
+                           ->with( self::flashMessageImportant( 'Va≈° nalog je kreiran! Poslali smo Vam email da bi ste ga aktivirali.' ) );
         }
 
         return Redirect::to( '/auth/register' )
-                       ->with( self::flashMessageImportant( 'Nismo uspeli da kreiramo Vaö nalog.' ) );
+                       ->with( self::flashMessageImportant( 'Nismo uspeli da kreiramo Va≈° nalog.' ) );
     }
 
 
@@ -28,11 +28,11 @@ class Redirects
     {
         if ( $true == true ) {
             return Redirect::to( '/auth/login' )
-                           ->with( self::flashMessage( 'Vaö nalog je aktiviran. Sada moûete da se ulogujete.' ) );
+                           ->with( self::flashMessage( 'Va≈° nalog je aktiviran. Sada mo≈æete da se ulogujete.' ) );
         }
 
         return Redirect::to( '/auth/login' )
-                       ->with( self::flashMessageImportant( 'Nismo uspeli da aktiviramo Vaö nalog. Probajte kasnije.' ) );
+                       ->with( self::flashMessageImportant( 'Nismo uspeli da aktiviramo Va≈° nalog. Probajte kasnije.' ) );
     }
 
 
@@ -45,7 +45,7 @@ class Redirects
         }
 
         return Redirect::to( '/auth/login' )
-                       ->with( self::flashMessageImportant( 'Email/äifra su pogresni, ili niste aktivirali svoj nalog!' ) );
+                       ->with( self::flashMessageImportant( 'Email/≈†ifra su pogresni, ili niste aktivirali svoj nalog!' ) );
     }
 
 
@@ -54,7 +54,7 @@ class Redirects
     {
         if ( $true == true ) {
             return Redirect::to( '/auth/login' )
-                           ->with( self::flashMessageImportant( 'Morate biti ulogovani da bi ste promenili öifru' ) );
+                           ->with( self::flashMessageImportant( 'Morate biti ulogovani da bi ste promenili ≈°ifru' ) );
         }
 
         return null;
@@ -66,11 +66,11 @@ class Redirects
     {
         if ( $true == true ) {
             return Redirect::to( '/' )
-                           ->with( self::flashMessage( 'Vaöa öifra je promenjena' ) );
+                           ->with( self::flashMessage( 'Va≈°a ≈°ifra je promenjena' ) );
         }
 
         return Redirect::to( '/auth/changepassword' )
-                       ->with( self::flashMessage( 'Vaöa öifra ne moûe biti promenjena. Uneti podaci se ne poklapaju sa onima u bazi!' ) );
+                       ->with( self::flashMessage( 'Va≈°a ≈°ifra ne mo≈æe biti promenjena. Uneti podaci se ne poklapaju sa onima u bazi!' ) );
     }
 
 
@@ -79,11 +79,11 @@ class Redirects
     {
         if ( $true == true ) {
             return Redirect::to( '/auth/login' )
-                           ->with( self::flashMessage( 'Poslali smo Vam novu öifru.' ) );
+                           ->with( self::flashMessage( 'Poslali smo Vam novu ≈°ifru.' ) );
         }
 
         return Redirect::to( '/auth/forgotpassword' )
-                       ->with( self::flashMessage( 'Mejl koji ste uneli ne postoji u naöoj bazi.' ) );
+                       ->with( self::flashMessage( 'Mejl koji ste uneli ne postoji u na≈°oj bazi.' ) );
     }
 
 
@@ -92,10 +92,10 @@ class Redirects
     {
         if ( $true == true ) {
             return Redirect::to( '/auth/login' )
-                           ->with( self::flashMessage( 'Vaö öifra je uspeöno resetovana. Sada moûete da se ulogujete sa öifrom koju smo Vam poslali!' ) );
+                           ->with( self::flashMessage( 'Va≈° ≈°ifra je uspe≈°no resetovana. Sada mo≈æete da se ulogujete sa ≈°ifrom koju smo Vam poslali!' ) );
         }
 
         return Redirect::to( '/auth/login' )
-                       ->with( self::flashMessage( 'Nismo uspeli da vratimo Vaö nalog!' ) );
+                       ->with( self::flashMessage( 'Nismo uspeli da vratimo Va≈° nalog!' ) );
     }
 }

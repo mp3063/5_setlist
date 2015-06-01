@@ -8,7 +8,7 @@ class Messages
     {
         return [ 'required' => 'Polje :attribute je obavezno i morate ga popuniti',
                  'max'      => 'Maximalno :values karaktera',
-                 'min'      => ':attribute mora da sadrži minimalno :values karaktera',
+                 'min'      => ':attribute mora da sadrÅ¾i minimalno :values karaktera',
                  'same'     => ':attribute i password moraju da budu isti' ];
     }
 
@@ -24,7 +24,7 @@ class Messages
     public static function changePassword()
     {
         return [ 'required' => 'Polje :attribute je obavezno i morate ga popuniti',
-                 'min'      => ':attribute mora da sadrži minimalno :values karaktera',
+                 'min'      => ':attribute mora da sadrÅ¾i minimalno :values karaktera',
                  'same'     => ':attribute i :values moraju da budu isti' ];
     }
 
