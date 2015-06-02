@@ -43,9 +43,10 @@ class RepertoarController extends Controller
     {
         $pesma_update = $this->findSong( $id );
         $repertoar = Auth::user()->repertoar;
+        $select = Genre::orderBy( 'genre', 'asc' )->lists( 'genre', 'id' );
         if ( $pesma_update ) {
             return view( 'repertoar.edit',
-                         compact( 'pesma_update', 'repertoar' ) );
+                         compact( 'pesma_update', 'repertoar', 'select' ) );
         }
 
         return Redirect::to( '/' );
@@ -56,7 +57,7 @@ class RepertoarController extends Controller
     public function index()
     {
         $repertoar = Auth::user()->repertoar;
-        $select = Genre::lists( 'genre', 'id' );
+        $select = Genre::orderBy( 'genre', 'asc' )->lists( 'genre', 'id' );
 
         return view( 'repertoar.repertoar', compact( 'repertoar', 'select' ) );
     }

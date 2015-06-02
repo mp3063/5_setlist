@@ -18,6 +18,13 @@ class Repertoar extends Model
 
 
 
+    public function getGenreListAttribute()
+    {
+        return $this->genre->lists( 'id' );
+    }
+
+
+
     public function user()
     {
         return $this->belongsTo( 'App\User', 'user_id', 'id' );

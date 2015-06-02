@@ -11,5 +11,8 @@
     <p>{{$errors->first('lyrics')}}</p>
 </div>
 <div class="form-group">
+    {!! Form::select('genre_list[]',$select,null,['class'=>'form-control','multiple']) !!}
+</div>
+<div class="form-group">
     {!! Form::submit($submitButton, ['class' => 'form-control btn btn-danger']) !!}
 </div>
