@@ -8,7 +8,7 @@
                 <h4 class="modal-title text-center" id="myModalLabel">Enter band and song name, and lyrics!</h4>
             </div>
             <div class="modal-body">
-                {!! Form::open(['url' => 'repertoar', 'method' => 'post']) !!}
+                {!! Form::open(['route' => 'repertoar.store', 'method' => 'post']) !!}
                 {!! Form::label('band', 'Band', ['class' => 'control-label']) !!}
                 {!! Form::text('band', null, ['class' => 'form-control']) !!}
                 {!! Form::label('song', 'Song', ['class' => 'control-label']) !!}
@@ -21,7 +21,7 @@
                 </div>
 
                 <div class="form-group">
-                    {!! Form::select('genre[]',$select,null,['class'=>'form-control','multiple']) !!}
+                    {!! Form::select('genre_list[]',$select,null,['class'=>'form-control','multiple']) !!}
                 </div>
 
                 <div class="modal-footer">

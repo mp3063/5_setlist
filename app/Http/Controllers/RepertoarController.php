@@ -42,11 +42,13 @@ class RepertoarController extends Controller
     public function edit( $id )
     {
         $pesma_update = $this->findSong( $id );
-        $repertoar = Auth::user()->repertoar;
-        $select = Genre::orderBy( 'genre', 'asc' )->lists( 'genre', 'id' );
+        $repertoar = $this->userRepertoar();
+        $select = $this->genreSelect();
+        $genreIds = $pesma_update->genre_list;
         if ( $pesma_update ) {
             return view( 'repertoar.edit',
-                         compact( 'pesma_update', 'repertoar', 'select' ) );
+                         compact( 'pesma_update', 'repertoar', 'select',
+                                  'genreIds' ) );
         }
 
         return Redirect::to( '/' );
@@ -56,8 +58,8 @@ class RepertoarController extends Controller
 
     public function index()
     {
-        $repertoar = Auth::user()->repertoar;
-        $select = Genre::orderBy( 'genre', 'asc' )->lists( 'genre', 'id' );
+        $repertoar = $this->userRepertoar();
+        $select = $this->genreSelect();
 
         return view( 'repertoar.repertoar', compact( 'repertoar', 'select' ) );
     }
@@ -81,8 +83,7 @@ class RepertoarController extends Controller
     {
         $pesma = new Repertoar( $request->all() );
         $genre = Auth::user()->repertoar()->save( $pesma );
-        $genreIds = $request->input( 'genre' );
-        $genre->genre()->attach( $genreIds );
+        $this->syncGenreWithSongs( $genre, $request );
         $this->flashMessage( 'You successfully inserted song in the Master SetList!' );
 
         return Redirect::back();
@@ -94,10 +95,31 @@ class RepertoarController extends Controller
     {
         $pesma_update = $this->findSong( $id );
         $pesma_update->update( $request->all() );
+        $this->syncGenreWithSongs( $pesma_update, $request );
         $this->flashMessage( 'You\'re successfully updated a song!' );
 
         return Redirect::to( '/' );
 
+    }
+
+
+
+    /**
+     * @param                                        $instance
+     * @param \App\Http\Requests\RepertoarValidation $request
+     *
+     * @internal param $pesma_update
+     */
+    private function syncGenreWithSongs( $instance, $request )
+    {
+        return $instance->genre()->sync( $request->input( 'genre_list' ) );
+    }
+
+
+
+    private function genreSelect()
+    {
+        return Genre::orderBy( 'genre', 'asc' )->lists( 'genre', 'id' );
     }
 
 }
