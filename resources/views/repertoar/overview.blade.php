@@ -3,35 +3,40 @@
 @section('content')
     @if($chunk)
         <div class="container">
-            <div class="row">
+            <div>
+                <div class="text-center animate-in" data-anim-type="fade-in-down">
 
-                <table class="table table-condensed">
-                    @if(isset($chunk[0]))
-                        <div class="col-md-4 kol-1">
-                            @foreach($chunk[0] as $deo)
-                                <div class="repertoar-div">{{$deo['band']}} - {{$deo['song']}}</div>
+                    <div class="btn-group caegories">
+
+                        @foreach($genres as $genre)
+                            <a href="#" data-filter=".{{$genre->genre}}" class="btn btn-danger">{{$genre->genre}}</a>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+            <br/>
+
+            <div class="row">
+                @for($i=0;$i<3;$i++)
+                    @if(isset($chunk[$i]))
+                        <div class="col-md-4 {{'kol-'.($i+1)}} work-wrapper">
+                            @foreach($chunk[$i] as $deo) {{--povlacim pesme--}}
+                            <?php $svi = [ ]?>
+                            @foreach($deo->genre as $gen) {{--ulazim u pesmu i preko Belongs to povlacim genre--}}
+                            <?php
+                            $svi[] = $gen['genre']
+                            ?>
+                            @endforeach
+
+                            <div class="repertoar-div {{ join(' ',$svi)}}">{{$deo['band']}} - {{$deo['song']}}</div>
+
                             @endforeach
                         </div>
                     @endif
-
-                    @if(isset($chunk[1]))
-                            <div class="col-md-4 kol-2">
-                                @foreach($chunk[1] as $deo)
-                                    <div class="repertoar-div">{{$deo['band']}} - {{$deo['song']}}</div>
-                                @endforeach
-                            </div>
-                    @endif
-
-                    @if(isset($chunk[2]))
-                            <div class="col-md-4 kol-3">
-                                @foreach($chunk[2] as $deo)
-                                    <div class="repertoar-div">{{$deo['band']}} - {{$deo['song']}}</div>
-                                @endforeach
-                            </div>
-                    @endif
-                </table>
-
+                @endfor
             </div>
+            <br/>
+
             <div class="button text-center">
                 <button type="button" class="btn btn-success izaberi">Choose</button>
             </div>

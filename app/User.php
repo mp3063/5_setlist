@@ -1,10 +1,10 @@
 <?php namespace App;
 
 use Illuminate\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Database\Eloquent\Model;
 
 class User extends Model
     implements AuthenticatableContract, CanResetPasswordContract
@@ -25,14 +25,12 @@ class User extends Model
      * @var array
      */
     protected $fillable
-        = [
-            'username',
+        = [ 'username',
             'email',
             'password',
             'code',
             'active',
-            'password_temp'
-        ];
+            'password_temp' ];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -41,9 +39,19 @@ class User extends Model
      */
     protected $hidden = [ 'password', 'remember_token' ];
 
+
+
     public function repertoar()
     {
         return $this->hasMany( 'App\Repertoar', 'user_id', 'id' );
+    }
+
+
+
+    public function genres()
+    {
+        return $this->hasManyThrough( 'App\PivotRepertoarGenre',
+                                      'App\Repertoar', 'user_id', 'song_id' );
     }
 
 }

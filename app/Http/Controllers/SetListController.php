@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\Genre;
 use App\Http\Requests;
 use App\Logic\Traits\Helpers;
 
@@ -30,9 +31,19 @@ class SetListController extends Controller
     public function overview()
     {
         $repertoar = $this->userRepertoar();
+        $user = $this->findAuthUserById();
+        $genre = $user->genres->lists( 'genre_id' );
+        $genres = Genre::findMany( $genre );
         $chunk = $this->poReduPesama( 3 );
 
-        return view( 'repertoar.overview', compact( 'repertoar',
-                                                    'chunk' ) )->with( $this->flashMessageImportant( 'Click on songs to select it from master playlist!' ) );
+        return view( 'repertoar.overview', compact( 'repertoar', 'chunk',
+                                                    'genres' ) )/*->with( $this->flashMessageImportant( 'Click on songs to select it from master playlist!' ) )*/;
+    }
+
+
+
+    public function solidBlack()
+    {
+        return view( 'solid-black' );
     }
 }

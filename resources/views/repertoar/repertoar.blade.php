@@ -10,11 +10,10 @@
                 </button>
                 <br/>
             </div>
-
         </div>
+
 
         @include('repertoar.petlje.lista_pesama')
 
-    </div>
     </div>
 @stop
