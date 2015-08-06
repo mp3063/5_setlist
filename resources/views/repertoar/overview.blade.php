@@ -1,39 +1,40 @@
 @extends('layouts.master')
 
 @section('content')
-    @if($chunk)
         <div class="container">
             <div>
                 <div class="text-center animate-in" data-anim-type="fade-in-down">
 
-                    <div class="btn-group caegories">
+                    <div class="btn-group categories">
 
                         @foreach($genres as $genre)
-                            <a href="#" data-filter=".{{$genre->genre}}" class="btn btn-danger">{{$genre->genre}}</a>
+                            <?php
+                            $genr = str_replace(' ','',$genre->genre);
+                            ?>
+                            <a href="#" data-filter=".{{$genr}}" class="btn btn-danger">{{$genre->genre}}</a>
+
                         @endforeach
+                            <a href="#" data-filter="*" class="btn btn-danger">All</a>
                     </div>
                 </div>
             </div>
             <br/>
 
-            <div class="row">
-                @for($i=0;$i<3;$i++)
-                    @if(isset($chunk[$i]))
-                        <div class="col-md-4 {{'kol-'.($i+1)}} work-wrapper">
-                            @foreach($chunk[$i] as $deo) {{--povlacim pesme--}}
-                            <?php $svi = [ ]?>
-                            @foreach($deo->genre as $gen) {{--ulazim u pesmu i preko Belongs to povlacim genre--}}
-                            <?php
-                            $svi[] = $gen['genre']
-                            ?>
-                            @endforeach
+            <div class="grid">
+                @if(isset($repertoar))
+                    @foreach($repertoar as $pesma) {{--povlacim pesme--}}
+                    <?php $svi = [ ]?>
+                    @foreach($pesma->genre as $gen) {{--ulazim u pesmu i preko Belongs to povlacim genre--}}
+                    <?php
+                     $genr = str_replace(' ','',$gen['genre']);
+                    $svi[] = $genr;
+                    ?>
+                    @endforeach
 
-                            <div class="repertoar-div {{ join(' ',$svi)}}">{{$deo['band']}} - {{$deo['song']}}</div>
+                    <div class="repertoar-div {{ join(' ',$svi)}}">{{$pesma->band}} - {{$pesma->song}}</div>
+                    @endforeach
+                @endif
 
-                            @endforeach
-                        </div>
-                    @endif
-                @endfor
             </div>
             <br/>
 
@@ -41,5 +42,4 @@
                 <button type="button" class="btn btn-success izaberi">Choose</button>
             </div>
         </div>
-    @endif
 @stop

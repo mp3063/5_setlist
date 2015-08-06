@@ -56,7 +56,7 @@ $(document).ready(function () {
      FILTER FUNCTIONALITY SCRIPTS
      ======================================*/
     $(window).load(function () {
-        var $container = $('#work-div');
+        var $container = $('.grid');
         $container.isotope({
             filter: '*',
             animationOptions: {
@@ -65,8 +65,8 @@ $(document).ready(function () {
                 queue: false
             }
         });
-        $('.caegories a').click(function () {
-            $('.caegories .active').removeClass('active');
+        $('.categories a').click(function () {
+            $('.categories .active').removeClass('active');
             $(this).addClass('active');
             var selector = $(this).attr('data-filter');
             $container.isotope({
@@ -95,44 +95,24 @@ $(document).ready(function () {
     $("div.alert").not(".alert-important").delay(3000).slideUp(600);
 
     $(".izaberi").click(function () {
-
+        $(".categories").hide();
         var highlight = $(".highlight");
         if (highlight.length > 0) {
             $(".repertoar-div").not(highlight).hide();
             $(highlight).removeClass("highlight").addClass("chosen");
-
-            var chosen = $(".chosen");
-            var poKolonama = function (divider) {
-                return Math.ceil(chosen.length / divider);
-            };
-
-            var prva = poKolonama(3);
-            var druga = prva * 2;
-            var treca = chosen.length;
-
-            chosen.slice(0, prva).addClass("1");
-            chosen.slice(prva, druga).addClass("2");
-            chosen.slice(druga, treca).addClass("3");
-
-
-            $(".1").each(function () {
-
-                $(this).appendTo(".kol-1");
-
+            var $container = $('.grid');
+            $container.isotope({
+                filter: '.chosen',
+                animationOptions: {
+                    duration: 750,
+                    easing: 'linear',
+                    queue: false
+                }
             });
-            $(".2").each(function () {
 
-                $(this).appendTo(".kol-2");
-
-            });
-            $(".3").each(function () {
-
-                $(this).appendTo(".kol-3");
-
-            });
         }
         else {
-            alert("You must first chose some songs!");
+            alert("You must first choose some songs!");
         }
 
 

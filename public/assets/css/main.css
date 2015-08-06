@@ -1,7 +1,8 @@
 .repertoar-div {
     border: solid thin #5d5d5d;
     border-radius: 5px;
-    width: auto;
+    width: 24%;
+    margin: 0.5%;
     padding: 5px;
     background-color: rgba(60, 98, 95, .5);
     box-shadow: #00ee00 -3px 3px 10px 1px;
